@@ -1,7 +1,7 @@
 /*
 * jQuery animateEach Plugin
 * Example at: http://jsfiddle.net/JJenZz/5dEfs/
-* Copyright (c) 2010 J. Smith (@jjenzz)
+* Copyright (c) 2010 J. Smith (@jjenzz with help from @rwaldin)
 * Dual licensed under the MIT and GPL licenses:
 * http://www.opensource.org/licenses/mit-license.php
 * http://www.gnu.org/licenses/gpl.html
@@ -34,4 +34,4 @@
 
 		return this;
 	};
-})(jQuery);
+}(jQuery));
