@@ -22,25 +22,16 @@
 */
 
 (function($) {
-    $.fn.animateEach = function() {
-        var i = -1, el = this, arg = arguments,
-            opts = { p: arg[0], d: 300, c: false };
+	$.fn.animateEach = function(properties, duration, callback) {
+		var i = 0, el = this;
+		
+		callback = $.proxy(callback || (typeof duration === 'function' ? duration : $.noop), this);
+		duration = typeof duration !== 'function' ? duration : 300;
 
-        if(typeof opts.p === 'object' && !$.isEmptyObject(opts.p) && el.length) {
-            if(typeof arg[arg.length-1] === 'function') {
-                opts.c = arg[arg.length-1];
-            }
+		(function() {
+			el.eq(i++).animate(properties, duration, el.length > i ? arguments.callee : callback);
+		})();
 
-            if(arg[1] && typeof arg[1] === 'number') {
-                opts.d = arg[1];
-            }
-
-            (function() {
-                el.eq(++i).animate(opts.p, opts.d, arguments.callee);
-                if(el.length == i && opts.c) opts.c.call(el);
-            })();
-        }
-
-        return el;
-    };
-}(jQuery));
+		return this;
+	};
+})(jQuery);
