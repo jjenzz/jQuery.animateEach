@@ -25,12 +25,9 @@
       item = el.eq(i);
       opts.before.call(item);
       item.animate(properties, opts.duration, function() {
-        if (i < len) {
-          opts.after.call(item);
-          go();
-        } else {
-          callback.call(el);
-        }
+        callback = (i < len) ? go : callback;
+        opts.after.call(item);
+        callback.call(el);
       });
       i++;
     })();
