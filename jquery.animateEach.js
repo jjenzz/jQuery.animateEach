@@ -15,32 +15,32 @@
  * callback: A function to call once all animations are complete.
  */
 (function($) {
-	$.fn.animateEach = function(properties, options, callback) {
-		var i = 0, el = this, len = el.length, item, opts;
+  $.fn.animateEach = function(properties, options, callback) {
+    var i = 0, el = this, len = el.length, item, opts;
 
-		opts = $.extend({}, $.fn.animateEach.defaults, options);
-		callback = callback || (typeof options === 'function' ? options : $.noop);
+    opts = $.extend({}, $.fn.animateEach.defaults, options);
+    callback = callback || (typeof options === 'function' ? options : $.noop);
 
-		(function go() {
-			item = el.eq(i);
-			opts.before.call(item);
-			item.animate(properties, opts.duration, function() {
-				if (i < len) {
-					opts.after.call(item);
-					go();
-				} else {
-					callback.call(el);
-				}
-			});
-			i++;
-		})();
+    (function go() {
+      item = el.eq(i);
+      opts.before.call(item);
+      item.animate(properties, opts.duration, function() {
+        if (i < len) {
+          opts.after.call(item);
+          go();
+        } else {
+          callback.call(el);
+        }
+      });
+      i++;
+    })();
 
-		return this;
-	};
+    return this;
+  };
 
-	$.fn.animateEach.defaults = {
-		duration: 300, 	// A string or number determining how long each animation will run
-		before: $.noop,	// A function that will be called before each animation is run.
-		after: $.noop		// A function that will be called after each animation is run.
-	};
+  $.fn.animateEach.defaults = {
+    duration: 300,  // A string or number determining how long each animation will run
+    before: $.noop, // A function that will be called before each animation is run.
+    after: $.noop   // A function that will be called after each animation is run.
+  };
 }(jQuery));
