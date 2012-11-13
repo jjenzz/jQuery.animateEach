@@ -1,5 +1,5 @@
 jQuery.animateEach
-==============
+==================
 
 What is this?
 -------------
