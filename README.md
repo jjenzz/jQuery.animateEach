@@ -28,7 +28,7 @@ You can also pass a duration:
 ... and even specify methods to be fired before and after each animation:
 
     $('#demo li').animateEach({ 'font-size': '22px' }, {
-      duration: 3000,
+      duration: 20,
       before: beforeEach,
       after: afterEach
     }, function() {
