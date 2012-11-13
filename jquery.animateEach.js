@@ -16,7 +16,7 @@
  */
 (function($) {
   $.fn.animateEach = function(properties, options, callback) {
-    var i = 0, el = this, len = el.length, item, opts;
+    var i = 0, el = this, len = el.length, item, opts, cb;
 
     opts = $.extend({}, $.fn.animateEach.defaults, options);
     callback = callback || (typeof options === 'function' ? options : $.noop);
@@ -25,9 +25,9 @@
       item = el.eq(i);
       opts.before.call(item);
       item.animate(properties, opts.duration, function() {
-        callback = (i < len) ? go : callback;
+        cb = (i < len) ? go : callback;
         opts.after.call(item);
-        callback.call(el);
+        cb.call(el);
       });
       i++;
     })();
